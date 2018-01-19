@@ -1,0 +1,27 @@
+Help for 'move':
+
+Command syntax:
+  move <direction>
+
+Example:
+  move north
+
+Moves the player from room to room in the maze. Direction (required) is generally one of the four cardinal directions:
+north, east, south, or west, as well as up or down if there is a staircase in the current room. Sometimes there may be
+other directions or exits from the room you can take, you can also use move to travel using these nonstandard exits.
+Avaliable exits from the current room will be listed along with the viewing map.
+
+Example:
+[Exits: north east down portal]
+
+In this room you could use any of the words after "Exits:" between the brackets as a valid destination.
+
+Note that moving in a cardinal direction counts as a turn action and will allow the monsters in the maze to also have a
+turn based on speed values. Moving up, down, or in a nonstandard direction does not count as a turn action.
+
+You cannot move into a room if there is a monster in it. In the exit list, such blocked exits will have an asterisk
+after them, like "north*". You will have to kill the monster in that room or wait for it to move in order to move in
+that direction!
+
+By default, there are aliases for moving in the cardinal directions, as well as up and down, created as the direction
+names such as "east" or "up", as well as the initial letter of the direction such as "s" or "d".

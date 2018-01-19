@@ -1,0 +1,7 @@
+Help for 'quit':
+
+Command syntax:
+  quit
+
+Quits the game. Note that saving is currently not supported and there is no confirmation. Please be careful when using
+this command!

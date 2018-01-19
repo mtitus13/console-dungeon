@@ -12,7 +12,7 @@ def flush_input():
         while msvcrt.kbhit():
             msvcrt.getch()
     except ImportError:
-        import sys, termios    #for linux/unix
+        import sys, termios    # for linux/unix
         termios.tcflush(sys.stdin, termios.TCIOFLUSH)
 
 
@@ -31,7 +31,8 @@ class Game:
                     self.downstairs.append(p)
 
         self.commands = {"move": self.move, "look": self.commandLook, "quit": self.commandQuit,
-                         "alias": self.createAlias, "map": self.commandPlayerMap, "wizardmap": self.commandWizardMap}
+                         "alias": self.createAlias, "map": self.commandPlayerMap, "wizardmap": self.commandWizardMap,
+                         "help": self.commandHelp}
         self.aliases = {"north": "move north", "east": "move east", "south": "move south", "west": "move west",
                         "n": "move north", "e": "move east", "w": "move west", "s": "move south", "l": "look",
                         "down": "move down", "d": "move down", "up": "move up", "u": "move up"}
@@ -49,6 +50,32 @@ class Game:
         self.player_moved = True
         self.game_running = True
         self.processTime()
+
+    def commandHelp(self, args):
+        command = ""
+        try:
+            command = args[0]
+        except IndexError:
+            command = ""
+
+        if command == "":
+            print("To play console-dungeon, enter a command at the prompt (ends with '>').")
+            print("Available commands:")
+            for cmd in self.commands:
+                if cmd[0:6] != "wizard":
+                    print("    %s".format(cmd))
+            print("For more information about a command, type 'help <command>'")
+            print("You can also enter a command alias as a shortcut to a command.")
+            print("To see a list of aliases currently defined, type 'alias'.")
+            print("Type 'help alias' for more information.")
+        elif command in self.commands:
+            try:
+                with open("help/%s.help".format(command), "r") as f:
+                    print(f.read())
+            except FileNotFoundError:
+                print("Help file for %s not found. Please alert the developer!".format(command))
+        else:
+            print("Unknown command: %s. Type 'help' for a list of commands.".format(command))
 
     def commandWizardMap(self, args):
         try:
@@ -118,6 +145,11 @@ class Game:
                 m.setRoom(delta, floor.getRoom(self.player_pos + Room.moves[direction]))
 
         print(m)
+        exits = []
+        for direction, valid in room.exits:
+            if valid:
+                exits.push(direction)
+        print("[Exits: %s]".format(", ".join(exits)))
 
     def prompt(self) -> str:
         return "HP: {}/{} >".format(self.player.hp, self.player.maxhp)

@@ -1,0 +1,9 @@
+Help for 'look':
+
+Command syntax:
+  look
+
+Redisplays the look map, which displays the current room as well as any adjacent connected rooms and their contents.
+Also redisplays the exit list for the current room.
+
+This information is automatically displayed when you move to a different room.

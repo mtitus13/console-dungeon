@@ -1,0 +1,13 @@
+Help for 'alias':
+
+Command syntax:
+  alias [name [replacement command]]
+
+Example:
+  alias
+    Lists all aliases currently defined
+  alias north
+    Shows definition for alias named 'north'
+  alias jump move up
+    Creates an alias named 'jump' that executes the command 'move up'
+
