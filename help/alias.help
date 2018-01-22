@@ -11,3 +11,30 @@ Example:
   alias jump move up
     Creates an alias named 'jump' that executes the command 'move up'
 
+The 'alias' command allows you to create shortcuts for frequently-used commands. There are 3 modes to the alias command,
+depending on how many parameters you pass to it.
+
+If you pass no parameters, all currently-defined aliases and their expansions will be displayed. This includes default
+aliases.
+
+If you pass one parameter, an alias name, that alias's expansion will be displayed.
+
+If you pass multiple parameters, an alias can be created.
+* The first parameter is the name of the alias. All alias names must be a single word. You cannot create an alias with
+  the same name as a command or an existing alias. To replace an alias, first delete the alias using the 'delalias'
+  command.
+* The second parameter is the command that is being aliased. This must be an actual commmand from the list of commands
+  displayed by the 'help' command. You cannot create an alias that executes another alias.
+* Additional parameters may be supplied as default parameters for the command that the alias will execute. Note that
+  these parameters will be passed in the order that they are supplied when you create the alias. Also note that when you
+  execute an alias by typing it at the prompt, you can supply additional parameters to the command that will be executed
+  by adding them after the alias name. For example, you can type 'alias move m' to create an alias for the command
+  'move' as 'm', then at the prompt you can type 'm north' and 'north' will be used as a parameter to the 'move'
+  command. You can combine using parameters in the alias definition along with passing parameters when you call the
+  alias, but remember that the parameters to the command will be passed in order, with the parameters in the alias
+  definition passed first and then the parameters given with the alias execution. For example, you can create an alias
+  like "alias mm cast 'magic missile'" and then call it like 'mm west' and the command will be expanded to
+  "cast 'magic missile' west".
+* Only one command can be executed per alias. There are no conditional or flow control options available during an alias
+  definition; during command execution the alias word will simply be replaced by the alias expansion and executed as a
+  command.

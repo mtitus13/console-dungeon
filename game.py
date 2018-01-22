@@ -32,7 +32,7 @@ class Game:
 
         self.commands = {"move": self.move, "look": self.commandLook, "quit": self.commandQuit,
                          "alias": self.createAlias, "map": self.commandPlayerMap, "wizardmap": self.commandWizardMap,
-                         "help": self.commandHelp}
+                         "help": self.commandHelp, "dealias": self.commandDealias}
         self.aliases = {"north": "move north", "east": "move east", "south": "move south", "west": "move west",
                         "n": "move north", "e": "move east", "w": "move west", "s": "move south", "l": "look",
                         "down": "move down", "d": "move down", "up": "move up", "u": "move up"}
@@ -50,6 +50,22 @@ class Game:
         self.player_moved = True
         self.game_running = True
         self.processTime()
+
+    def commandDealias(self, args):
+        alias = ""
+        try:
+            alias = args[0]
+        except IndexError:
+            alias = ""
+
+        if alias == "":
+            print("Enter an alias name to delete. For a list of currently-defined aliases, type 'alias'.")
+        elif alias not in self.aliases:
+            print("%s is not defined as an alias. For a list of currently-defined aliases, type 'alias'.".format(alias))
+        else:
+            del(self.aliases[alias])
+            print("Alias %s deleted.".format(alias))
+
 
     def commandHelp(self, args):
         command = ""
