@@ -1,0 +1,17 @@
+Help for 'map':
+
+Command syntax:
+  map
+
+This command displays a map of where you have explored in the dungeon. The following symbols are displayed:
+
+# : Dungeon wall / Unenterable area
+. : Open floor / Enterable area (Visible, no monsters)
+(space) : Open Floor / Enterable area (Out of line of sight)
+@ : Current position
+< : Up stairs
+> : Down stairs
+Letters: Monsters
+
+As you explore the level, the map will be expanded. Enemies will be displayed only if they are in your line of sight:
+just because you can't see anything doesn't mean there's not a dragon right around the corner!
